@@ -10,13 +10,14 @@
 class Time 
 {
 public:
-   explicit Time( int = 0, int = 0, int = 0 ); // default constructor
+    // default initializes to 23:59:58
+   explicit Time( int& = 23, int& = 59, int& = 58 ); // default constructor
 
    // set functions
-   void setTime( int, int, int ); // set hour, minute, second
-   void setHour( int ); // set hour (after validation)
-   void setMinute( int ); // set minute (after validation)
-   void setSecond( int ); // set second (after validation)
+   void setTime( int&, int&, int& ); // set hour, minute, second
+   void setHour( int& ); // set hour (after validation)
+   void setMinute( int& ); // set minute (after validation)
+   void setSecond( int& ); // set second (after validation)
 
    // get functions
    unsigned int getHour() const; // return hour
