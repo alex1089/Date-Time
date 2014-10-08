@@ -7,13 +7,13 @@
 using namespace std;
 
 // Time constructor initializes each data member 
-Time::Time( int& hour, int& minute, int& second ) 
+Time::Time( const int& hour, const int& minute, const int& second ) 
 { 
    setTime( hour, minute, second ); // validate and set time
 } // end Time constructor
 
 // set new Time value using universal time, default to 23:59:58
-void Time::setTime( int& h=23, int& m=59, int& s=58 )
+void Time::setTime( const int& h=23, const int& m=59, const int& s=58 )
 {
    setHour( h ); // set private field hour
    setMinute( m ); // set private field minute
@@ -21,7 +21,7 @@ void Time::setTime( int& h=23, int& m=59, int& s=58 )
 } // end function setTime
 
 // set hour value
-void Time::setHour( int& h )
+void Time::setHour( const int& h )
 {
    if ( h >= 0 && h < 24 )
       hour = h;
@@ -30,7 +30,7 @@ void Time::setHour( int& h )
 } // end function setHour
 
 // set minute value
-void Time::setMinute( int& m )
+void Time::setMinute( const int& m )
 {
    if ( m >= 0 && m < 60 )
       minute = m; 
@@ -39,7 +39,7 @@ void Time::setMinute( int& m )
 } // end function setMinute
 
 // set second value
-void Time::setSecond( int& s )
+void Time::setSecond( const int& s )
 {
    if ( s >= 0 && s < 60 )
       second = s;

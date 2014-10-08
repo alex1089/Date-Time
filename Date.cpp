@@ -8,7 +8,7 @@ using namespace std;
 
 // constructor confirms proper value for month; calls
 // utility function checkDay to confirm proper value for day
-Date::Date( int mn, int dy, int yr )
+Date::Date( const int& mn, const int& dy, const int& yr )
 {
    if ( mn > 0 && mn <= monthsPerYear ) // validate the month
       month = mn;
@@ -40,7 +40,7 @@ Date::~Date()
 
 // utility function to confirm proper day value based on 
 // month and year; handles leap years, too
-unsigned int Date::checkDay( int testDay ) const
+unsigned int Date::checkDay( const int& testDay ) const
 {
    static const array< int, monthsPerYear + 1 > daysPerMonth = 
       { 0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
