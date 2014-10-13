@@ -8,8 +8,10 @@
 using namespace std;
 
 // default constructor, takes int of Month, Day, Year, and a Time object
-DateTime::DateTime(const int& m=0, const int& d=0, const int& y=0, const Time& t):
-    time(t(0,0,0)){
+DateTime::DateTime(const int& m=0, const int& d=0, const int& y=0, const Time& t=Time(0,0,0)){
+    setYear(y);
+    setMonth(m);
+    setDay(d);
     } 
 // print function, prints Month, Day, Year and Time information
 void DateTime::print() const{
@@ -17,16 +19,11 @@ void DateTime::print() const{
 }
 // increaseADay function increase the date by a day
 void DateTime::increaseADay(){
-    int dayLimit[]={0,31,28,31,30,31,30,31,31,30,31,30,31};
-
-    if (month==2 && day==dayLimit[month] &&((year%4==0 && year%100) || (year%400==0 && year%100==0))){
-	// leap year if divisible by 4, and not a centurial year unless divisible by 400 and 100
-	day=29;
-    }else if (day>=dayLimit[month]){ // if last day of the month, or 29th day in a leap year
+    if (checkDay(day+1)){   // if next day is valid, set day to day+1
+	day+=1;
+    } else {		    // else set day to 1 and increment month
 	day=1;
 	increaseAMonth();
-    } else {
-	day+=1;
     }
 }
 
@@ -64,7 +61,7 @@ int DateTime::getDay() const{
 }
 // setMonth validates and sets month
 void DateTime::setMonth(const int& m){
-    if (m<=12 && m!=0){
+    if (m<=monthsPerYear && m!=0){
 	month=m;
     } else {
 	cout<<"Invalid month ("<<m<<") set to 1.\n";
@@ -82,16 +79,11 @@ void DateTime::setYear(const int& y){
 }
 // setDay validates day using checkDay() and sets
 void DateTime::setDay(const int& d){
-    int dayLimit[]={0,31,28,31,30,31,30,31,31,30,31,30,31};
-
-    if (month==2 && (d==dayLimit[month] || d==dayLimit[month]+1) &&((year%4==0 && year%100) || (year%400==0 && year%100==0))){
-	// leap year if divisible by 4, and not a centurial year unless divisible by 400 and 100
+    if (checkDay(d)){  // if day is valid
 	day=d;
-    }else if (d>=dayLimit[month]){ // if last day of the month, or 29th day in a leap year
-	cout<<"day ("<<d<<") set to 1.";
+    } else{
+	cout<<"day ("<<d<<") set to 1.\n";
 	day=1;
-    } else {
-	day=d;
     }
 }
 // getHour returns hour value from Time object
@@ -116,17 +108,15 @@ void DateTime::setSecond(const int& s){
 }
 // validates day input
 bool DateTime::checkDay(const int& d) const{
-    bool flag=false;
+    bool flag=true;
     int dayLimit[]={0,31,28,31,30,31,30,31,31,30,31,30,31};
 
-    if (d>dayLimit[month] && month!=2){ // if past last day of the month, and not February
+    if (d>dayLimit[month]){ // if past last day of the month
 	flag=false;
-    } else if (month==2 &&  d==dayLimit[month]+1 &&((year%4==0 && year%100) || (year%400==0 && year%100==0))){
+    } 
+    if (month==2 &&  d==dayLimit[month]+1 &&((year%4==0 && year%100) || (year%400==0 && year%100==0)))
 	// leap year if divisible by 4, and not a centurial year unless divisible by 400 and 100
 	flag=true;
-    } else {
-	flag=true;
-    }
     return flag;
 }
 // DateTime destructor

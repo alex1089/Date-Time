@@ -12,7 +12,7 @@
 class DateTime{
     public:
 	// default constructor, takes int of Month, Day, Year, and a Time object
-	DataTime(const int& =0, const int& =0, const int& =0, const Time& =time(0,0,0));
+	DataTime(const int& =0, const int& =0, const int& =0, const Time& =(0,0,0));
 	// print function, prints Month, Day, Year and Time information
 	void print() const;
 	// increaseADay function increase the date by a day
@@ -20,7 +20,7 @@ class DateTime{
 	// increaseAMonth increases month by one 
 	void increaseAMonth();
 	// increases the year by one
-	void DateTime::increaseAYear();
+	void increaseAYear();
 	// increases the Time object by a second, while maintaining validity of other attributes
 	void tick();
 	// getMonth returns int month
@@ -51,6 +51,7 @@ class DateTime{
 	int month;
 	int day;
 	int year;
+	static int monthsPerYear=12;
 	Time time;
 	// validates day input
 	bool checkDay(const int& ) const;
