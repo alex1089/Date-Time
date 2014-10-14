@@ -10,15 +10,40 @@
 class Employee
 {
 public:
+    // Employee constructor, takes string objects of firstName and lastName
+    // takes two Date objects of hireDate and birthDate
+    // takes two DateTime objects of startDateTime and endDateTime
    Employee( const std::string &, const std::string &, 
-      const Date &, const Date & );
+      const Date &, const Date &, const DateTime&, const DateTime&);
+   // getFirstName() returns a string of object's firstname
+   std::string getFirstName() const;
+   // getLastName() returns a string object of employee's last name
+   std::string getLastName() const;
+   // gethireDate() displays hireDate object status
+   void gethireDate() const;
+   // getBirthDate() displays birthDate object state
+   void getbirthDate() const;
+   // getstartDateTime() displays startDateTime object state
+   void getstartDateTime() const;
+   // getendDateTime() displays endDateTime object state
+   void getendDateTime() const;
+   // testZeroDateTime() takes a DateTime object and returns true if all data members are 0
+   bool testZeroDateTime(const DateTime&) const;
+   // setendDateTime() takes int(hour,minute,second) of time until end of traning.
+   void setendDateTime(const int&, const int&, const int&);
+   // print() displays employee's name, hire date, birth date, and training start/end
    void print() const;
+   // getCount returns count of initialized employee objects
+   static int getCount() const;
    ~Employee(); // provided to confirm destruction order
 private:
    std::string firstName; // composition: member object
    std::string lastName; // composition: member object
    const Date birthDate; // composition: member object
    const Date hireDate; // composition: member object
+   DateTime startDateTime;
+   DateTime endDateTime;
+   static int count;
 }; // end class Employee
 
 #endif
