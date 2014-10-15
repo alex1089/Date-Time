@@ -12,6 +12,25 @@ Time::Time( const int& hour, const int& minute, const int& second )
    setTime( hour, minute, second ); // validate and set time
 } // end Time constructor
 
+// tick() increments state of object by 1 second, maintaining the validity of the other attributes
+// returns true on 00:00:00 tick (new day)
+bool Time::tick(){
+    bool new_day=false;	    // variable to return if a new day started
+    second++;	    // increment second by 1
+    if (second>59){ // if second is incremented past range [0,59]
+	second=0;   // reset second to one
+	minute++;   // increment minute
+	if (minute>59){	    // if minute is past its range [0,59]
+	    minute=0;	    // set minute to 0
+	    hour++;	    // increment hour by one
+	    if (hour>23){   // if hour is incremented past its range [0,23]
+		hour=0;
+		new_day=true;
+	    }
+	}
+    }
+    return new_day;
+}
 // set new Time value using universal time, default to 23:59:58
 void Time::setTime( const int& h=23, const int& m=59, const int& s=58 )
 {

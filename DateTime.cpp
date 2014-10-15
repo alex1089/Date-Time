@@ -3,19 +3,24 @@
 
 #include "DateTime.h"
 #include "Date.h"
+#include "Time.h"
 #include <iostream>
 #include <iomanip>
 using namespace std;
 
+const static int monthsPerYear=12;
 // default constructor, takes int of Month, Day, Year, and a Time object
-DateTime::DateTime(const int& m=0, const int& d=0, const int& y=0, const Time& t=Time(0,0,0)){
+DateTime::DateTime(const int& m, const int& d, const int& y, const Time& t):
+    time(t)
+{
     setYear(y);
     setMonth(m);
     setDay(d);
-    } 
+} 
 // print function, prints Month, Day, Year and Time information
 void DateTime::print() const{
-    cout<<month<<"/"<<day<<"/"<<year<<" "<<time.printStandard();
+    cout<<month<<"/"<<day<<"/"<<year<<" ";
+    time.printStandard();
 }
 // increaseADay function increase the date by a day
 void DateTime::increaseADay(){

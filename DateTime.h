@@ -12,7 +12,7 @@
 class DateTime{
     public:
 	// default constructor, takes int of Month, Day, Year, and a Time object
-	DataTime(const int& =0, const int& =0, const int& =0, const Time& =(0,0,0));
+	DateTime(const int& =0, const int& =0, const int& =0, const Time& =Time(0,0,0));
 	// print function, prints Month, Day, Year and Time information
 	void print() const;
 	// increaseADay function increase the date by a day
@@ -51,7 +51,7 @@ class DateTime{
 	int month;
 	int day;
 	int year;
-	static int monthsPerYear=12;
+	const static int monthsPerYear;
 	Time time;
 	// validates day input
 	bool checkDay(const int& ) const;

@@ -19,6 +19,8 @@ public:
    void setMinute( const int& ); // set minute (after validation)
    void setSecond( const int& ); // set second (after validation)
 
+    // returns true on 00:00:00 tick (new day)
+    bool tick();
    // get functions
    unsigned int getHour() const; // return hour
    unsigned int getMinute() const; // return minute
