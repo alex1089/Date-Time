@@ -2,7 +2,6 @@
 // Member-function definitions for class Time.
 #include <iostream>
 #include <iomanip>
-#include <stdexcept>
 #include "Time.h" // include definition of class Time from Time.h
 using namespace std;
 
@@ -45,7 +44,7 @@ void Time::setHour( const int& h )
    if ( h >= 0 && h < 24 )
       hour = h;
    else
-      throw invalid_argument( "hour must be 0-23" );
+       hour = 0;    // set hour to 0 if out of range
 } // end function setHour
 
 // set minute value
@@ -54,7 +53,7 @@ void Time::setMinute( const int& m )
    if ( m >= 0 && m < 60 )
       minute = m; 
    else
-      throw invalid_argument( "minute must be 0-59" );
+       minute = 0;	// set minute to 0 if out of range
 } // end function setMinute
 
 // set second value
@@ -63,7 +62,7 @@ void Time::setSecond( const int& s )
    if ( s >= 0 && s < 60 )
       second = s;
    else
-      throw invalid_argument( "second must be 0-59" );
+       second=0;    // set second to 0 if out of range
 } // end function setSecond
 
 // return hour value
@@ -89,6 +88,7 @@ void Time::printUniversal() const
 {
    cout << setfill( '0' ) << setw( 2 ) << getHour() << ":"
       << setw( 2 ) << getMinute() << ":" << setw( 2 ) << getSecond();
+   cout<<setfill(' ');	// reset fill to ' '
 } // end function printUniversal
 
 // print Time in standard-time format (HH:MM:SS AM or PM)
@@ -97,6 +97,7 @@ void Time::printStandard() const
    cout << ( ( getHour() == 0 || getHour() == 12 ) ? 12 : getHour() % 12 )
       << ":" << setfill( '0' ) << setw( 2 ) << getMinute()
       << ":" << setw( 2 ) << getSecond() << ( hour < 12 ? " AM" : " PM" );
+   cout<<setfill(' ');	// reset fill to ' '
 } // end function printStandard
 
 /**************************************************************************

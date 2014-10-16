@@ -3,12 +3,15 @@
 #ifndef DATE_H
 #define DATE_H
 
-class Date 
-{
+class Date {
 public:
    static const unsigned int monthsPerYear = 12; // months in a year
    explicit Date( const int& = 1, const int& = 1, const int& = 1900 ); // default constructor
    void print() const; // print date in month/day/year format
+    // getMonth() returns int month
+    int getMonth() const;
+    // getDay() returns int day
+    int getDay() const;
    ~Date(); // provided to confirm destruction order
 private:
    unsigned int month; // 1-12 (January-December)

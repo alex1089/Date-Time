@@ -43,6 +43,8 @@ class DateTime{
 	int getSecond() const;
 	// setHour sets hour in Time object. Validated in Time object
 	void setHour(const int&);
+	// setMinute() sets minute attribute of Time object
+	void setMinute(const int& m);
 	// setMinute sets minute in Time object, Validated in Time object
 	void setSecond(const int&);
 	// DateTime destructor
@@ -51,10 +53,11 @@ class DateTime{
 	int month;
 	int day;
 	int year;
-	const static int monthsPerYear;
+	static const int monthsPerYear=12;
 	Time time;
 	// validates day input
 	bool checkDay(const int& ) const;
+
 };
 
 #endif

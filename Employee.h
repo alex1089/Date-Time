@@ -6,6 +6,7 @@
 
 #include <string>
 #include "Date.h" // include Date class definition
+#include "DateTime.h" // DateTime definition
 
 class Employee
 {
@@ -13,7 +14,7 @@ public:
     // Employee constructor, takes string objects of firstName and lastName
     // takes two Date objects of hireDate and birthDate
     // takes two DateTime objects of startDateTime and endDateTime
-   Employee( const std::string &, const std::string &, 
+   Employee( const char* , const char*, 
       const Date &, const Date &, const DateTime&, const DateTime&);
    // getFirstName() returns a string of object's firstname
    std::string getFirstName() const;
@@ -34,13 +35,13 @@ public:
    // print() displays employee's name, hire date, birth date, and training start/end
    void print() const;
    // getCount returns count of initialized employee objects
-   static int getCount() const;
+   static int getCount() ;
    ~Employee(); // provided to confirm destruction order
 private:
    std::string firstName; // composition: member object
    std::string lastName; // composition: member object
-   const Date birthDate; // composition: member object
-   const Date hireDate; // composition: member object
+   Date birthDate; // composition: member object
+   Date hireDate; // composition: member object
    DateTime startDateTime;
    DateTime endDateTime;
    static int count;

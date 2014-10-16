@@ -8,13 +8,13 @@
 #include <iomanip>
 using namespace std;
 
-const static int monthsPerYear=12;
+
 // default constructor, takes int of Month, Day, Year, and a Time object
 DateTime::DateTime(const int& m, const int& d, const int& y, const Time& t):
     time(t)
 {
-    setYear(y);
     setMonth(m);
+    setYear(y);
     setDay(d);
 } 
 // print function, prints Month, Day, Year and Time information
@@ -66,7 +66,7 @@ int DateTime::getDay() const{
 }
 // setMonth validates and sets month
 void DateTime::setMonth(const int& m){
-    if (m<=monthsPerYear && m!=0){
+    if (m>0 && m<=monthsPerYear){
 	month=m;
     } else {
 	cout<<"Invalid month ("<<m<<") set to 1.\n";
@@ -107,6 +107,10 @@ int DateTime::getSecond() const{
 void DateTime::setHour(const int& h){
     time.setHour(h);
 }
+// setMinute() sets minute attribute of Time object
+void DateTime::setMinute(const int& m){
+    time.setMinute(m);
+}
 // setMinute sets minute in Time object, Validated in Time object
 void DateTime::setSecond(const int& s){
     time.setSecond(s);
@@ -116,7 +120,7 @@ bool DateTime::checkDay(const int& d) const{
     bool flag=true;
     int dayLimit[]={0,31,28,31,30,31,30,31,31,30,31,30,31};
 
-    if (d>dayLimit[month]){ // if past last day of the month
+    if (d>dayLimit[month] || d<1){ // if past last day of the month or day is <1
 	flag=false;
     } 
     if (month==2 &&  d==dayLimit[month]+1 &&((year%4==0 && year%100) || (year%400==0 && year%100==0)))

@@ -2,40 +2,47 @@
 // Date class member-function definitions.
 #include <array>
 #include <iostream>
-#include <stdexcept>
 #include "Date.h" // include Date class definition
 using namespace std;
 
 // constructor confirms proper value for month; calls
 // utility function checkDay to confirm proper value for day
-Date::Date( const int& mn, const int& dy, const int& yr )
-{
-   if ( mn > 0 && mn <= monthsPerYear ) // validate the month
+Date::Date( const int& mn, const int& dy, const int& yr ){
+   if ( mn > 0 && mn <= monthsPerYear ){ // validate the month
       month = mn;
-   else 
-      throw invalid_argument( "month must be 1-12" );
+    } else {
+	cout<<"Invalid month ("<<mn<<") set to 1.\n";
+	month=1;
+   }
 
-   year = yr; // could validate yr
+   if (yr>1900 && yr<2020){
+       year = yr; // could validate yr
+   } else {
+       year=2011;
+       cout<<"Invalid year ("<<yr<<") set to 2011.\n";
+   }
    day = checkDay( dy ); // validate the day
+   
 
-   // output Date object to show when its constructor is called
-   cout << "Date object constructor for date ";
-   print();                   
-   cout << endl;
 } // end Date constructor
 
 // print Date object in form month/day/year
-void Date::print() const
-{
+void Date::print() const{
    cout << month << '/' << day << '/' << year; 
 } // end function print
 
+// getMonth() returns int month
+int Date::getMonth() const {
+    return month;
+}
+
+// getDay() returns int day
+int Date::getDay() const {
+    return day;
+}
 // output Date object to show when its destructor is called
 Date::~Date()
 { 
-   cout << "Date object destructor for date ";
-   print();
-   cout << endl;
 } // end ~Date destructor
 
 // utility function to confirm proper day value based on 
@@ -54,7 +61,8 @@ unsigned int Date::checkDay( const int& testDay ) const
       ( year % 4 == 0 && year % 100 != 0 ) ) )
       return testDay;
 
-   throw invalid_argument( "Invalid day for current month and year" );
+   cout<<"day ("<<testDay<<") set to 1.\n";	// if all test fail, set day to 1
+   return 1; 
 } // end function checkDay
 
 /**************************************************************************
